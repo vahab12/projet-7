@@ -8,7 +8,7 @@ const db = mysql.createConnection({
   host: 'localhost',
   user: 'root',
   password: 'ROOT1516root',
-  database: 'foodly',
+  database: 'test',
 });
 
 /*
@@ -29,5 +29,5 @@ db.connect((err) => {
     console.log('Error, connexion échouée à BD MYSQL...', err);
     return;
   }
-  console.log('Connexion réussie à BD MYSQL !');
+  console.log('Connexion réussie à BD MYSQL...');
 });

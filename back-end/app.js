@@ -16,8 +16,6 @@ const path = require('path');
 //Importer dotenv et configurer
 require('dotenv').config(path, './config/.env');
 
-//Importer les fichiers routes chacun de son dossier
-const userRoutes = require('./routes/user.routes');
 //mysql
 const mysql = require('mysql');
 
@@ -26,42 +24,15 @@ const db = require('./config/db');
 
 const app = express();
 
-//test
-app.get('', (req, res) => {
-  db.getConnection((err, connection) => {
-    if (err) throw err;
-    console.log('connected as id ' + connection.threadId);
-    connection.query('SELECT * from foodly', (err, rows) => {
-      connection.release(); // return the connection to pool
+// Routes files
+const userRoutes = require('./routes/user.routes');
+//const postRoutes = require("./routes/post.routes");
+const authRoutes = require('./routes/auth.routes');
+//const commentRoutes = require("./routes/comment.routes");
 
-      if (!err) {
-        res.send(rows);
-      } else {
-        console.log(err);
-      }
+//FIN DE TESSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSST
 
-      // if(err) throw err
-      console.log('The data from beer table are: \n', rows);
-    });
-  });
-});
-
-//connection db
-//const database = require('./config/db');
-/*
-app.listen(process.env.PORT, () => {
-  console.log(`Server is up and running on ${process.env.PORT}`);
-});
-
-app.get('/getMysqlStatus', (req, res) => {
-  database.ping((err) => {
-    if (err) return res.status(500).send('MySQL Server is Down');
-    res.send('MySQL Server is Active');
-  });
-});
-*/
-//const postRoutes = require('./routes/post.routes');
-//const commentRoutes = require('./routes/comment.routes');
+//FIN DE TESSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSST
 
 // Utilisation de ce middlware générale pour résoudre le problème de cors
 app.use((req, res, next) => {
@@ -78,15 +49,12 @@ app.use((req, res, next) => {
   next();
 });
 
-//check db connection
-
 //Utilisation de bodyParser
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+//Multer
 app.use('/images', express.static(path.join(__dirname, 'images')));
-
-//***********Middlewares always executed*********//
 
 //Utilisation de helmet
 app.use(helmet());
@@ -95,7 +63,7 @@ app.use(cookieParser());
 
 // Les routes
 app.use('/api/user', userRoutes);
-//app.use('/api/auth', authRoutes);
+app.use('/api/auth', authRoutes);
 //app.use('/api/post', postRoutes);
 //app.use('/api/comment', commentRoutes);
 
