@@ -1,14 +1,16 @@
 const jwt = require('jsonwebtoken');
 const dbc = require('../config/db');
+require('dotenv').config({ path: '../config/.env' });
 
 module.exports = (req, res, next) => {
   try {
     if (req.cookies.jwt) {
       const { jwt: token } = req.cookies;
-      const decodedToken = jwt.verify(token, process.env.JWT_TOKEN);
+      const decodedToken = jwt.verify(token, process.env.JWT_TOKEN_SECRET);
       const { user_id: userId } = decodedToken;
       let db = dbc.getDB();
       const sql = `SELECT user_id FROM users WHERE user_id = ${userId}`;
+
       db.query(sql, (err, result) => {
         if (err) res.status(204).json(err);
         else {
@@ -17,11 +19,11 @@ module.exports = (req, res, next) => {
       });
     } else {
       res.clearCookie();
-      res.status(401).json({ message: 'Unauthorized' });
+      res.status(401).json({ message: 'UnauthorizedDDDDD' });
     }
   } catch (err) {
     res.clearCookie();
     console.log(err);
-    res.status(401).json({ message: 'Unauthorized' });
+    res.status(401).json({ message: 'Unauthorizedd' });
   }
 };
