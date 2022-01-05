@@ -26,13 +26,9 @@ const app = express();
 
 // Routes files
 const userRoutes = require('./routes/user.routes');
-//const postRoutes = require("./routes/post.routes");
+const postRoutes = require('./routes/post.routes');
 const authRoutes = require('./routes/auth.routes');
 //const commentRoutes = require("./routes/comment.routes");
-
-//DEBUT DE TESSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSST
-
-//FIN DE TESSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSST
 
 // Utilisation de ce middlware générale pour résoudre le problème de cors
 app.use((req, res, next) => {
@@ -64,7 +60,7 @@ app.use(cookieParser());
 // Les routes
 app.use('/api/user', userRoutes);
 app.use('/api/auth', authRoutes);
-//app.use('/api/post', postRoutes);
+app.use('/api/post', postRoutes);
 //app.use('/api/comment', commentRoutes);
 
 module.exports = app;
