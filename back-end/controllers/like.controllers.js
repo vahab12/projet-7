@@ -4,7 +4,7 @@ const db = dbc.getDB();
 // Liker & desliker le post
 exports.likeDeslikePost = (req, res) => {
   const { userId, postId } = req.body;
-  const sqlSelect = `SELECT * FROM likes WHERE likes.user_id = ${userId} AND likes.post_id = ${postId}`;
+  const sqlSelect = `SELECT * FROM likes WHERE user_id = ${userId} AND post_id = ${postId}`;
   db.query(sqlSelect, (err, result) => {
     if (err) {
       console.log(err);

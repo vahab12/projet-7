@@ -2,8 +2,9 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 require('dotenv').config({ path: '../config/.env' });
 const dbc = require('../config/db');
-const mysql = require('mysql');
+//const mysql = require('mysql');
 
+// Créer un compte
 exports.signup = async (req, res) => {
   console.log(req.body);
   try {
@@ -31,6 +32,7 @@ exports.signup = async (req, res) => {
   }
 };
 
+//S'identifié
 exports.login = (req, res) => {
   //===== Vérifier si user exist dans BD ======
   const { user_email, user_password: clearPassword } = req.body;
@@ -82,10 +84,12 @@ exports.login = (req, res) => {
   });
 };
 
+//se deconnecter
 exports.logout = (req, res) => {
   res.clearCookie('jwt');
   res.status(200).json('Vous êtes déconecté!!!');
 };
+
 /*
 exports.desactivateAccount = (req, res) => {
   const userId = req.params.id;
@@ -99,23 +103,9 @@ exports.desactivateAccount = (req, res) => {
     res.status(200).json('DESACTIVATE');
   });
 };
-
-
-exports.delete = (req, res) => {
-  const id = req.body.id;
-  connection.query(
-    'DELETE from users WHERE id = ?',
-    [id],
-    (err, result, fields) => {
-      res.json({
-        status: 1,
-        message: 'User has been deleted succesfuly !',
-        data: result,
-      });
-    }
-  );
-};
 */
+
+//supprimer
 exports.delete = (req, res) => {
   const userId = req.params.id;
   const db = dbc.getDB();

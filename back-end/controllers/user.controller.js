@@ -1,8 +1,7 @@
 const dbc = require('../config/db');
 const db = dbc.getDB();
 
-// RUD users
-
+// Get one user
 exports.getOneUser = (req, res, next) => {
   const { id: userId } = req.params;
   const sqlGetUser = `SELECT * FROM users WHERE users.user_id = ${userId};`;
@@ -16,6 +15,7 @@ exports.getOneUser = (req, res, next) => {
   });
 };
 
+//Update one user
 exports.updateOneUser = (req, res, next) => {
   if (req.file) {
     const { id: user_id } = req.params;
@@ -45,6 +45,7 @@ exports.updateOneUser = (req, res, next) => {
   });
 };
 
+// Obtenir l'image de son profile
 exports.getProfilPicture = (req, res, next) => {
   const { id: user_id } = req.params;
   const sqlGetUser = `SELECT img_url FROM images WHERE images.user_id = ${user_id} ORDER BY images.img_id desc;`;

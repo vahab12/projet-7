@@ -61,7 +61,7 @@ exports.getOnePost = (req, res, next) => {
 //Update
 
 exports.updatePost = (req, res, next) => {
-  let sql = 'UPDATE  * FROM posts ORDER BY post_date DESC;';
+  let sql = 'UPDATE FROM posts ORDER BY post_date DESC;';
 
   let db = dbc.getDB();
   db.query(sql, (err, result) => {

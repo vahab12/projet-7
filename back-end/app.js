@@ -22,13 +22,17 @@ const mysql = require('mysql');
 //db
 const db = require('./config/db');
 
+//multer
+const multer = require('./middleware/multer-config');
+
 const app = express();
 
 // Routes files
 const userRoutes = require('./routes/user.routes');
 const postRoutes = require('./routes/post.routes');
 const authRoutes = require('./routes/auth.routes');
-//const commentRoutes = require("./routes/comment.routes");
+const commentRoutes = require('./routes/comment.routes');
+const likeRoutes = require('./routes/like.routes');
 
 // Utilisation de ce middlware générale pour résoudre le problème de cors
 app.use((req, res, next) => {
@@ -61,6 +65,7 @@ app.use(cookieParser());
 app.use('/api/user', userRoutes);
 app.use('/api/auth', authRoutes);
 app.use('/api/post', postRoutes);
-//app.use('/api/comment', commentRoutes);
+app.use('/api/comment', commentRoutes);
+app.use('/api/like', likeRoutes);
 
 module.exports = app;
