@@ -59,7 +59,6 @@ exports.getOnePost = (req, res, next) => {
 };
 
 //Update
-
 exports.updatePost = (req, res, next) => {
   let sql = 'UPDATE FROM posts ORDER BY post_date DESC;';
 
@@ -88,7 +87,7 @@ exports.deleteOnePost = (req, res, next) => {
 
 //Get Image
 exports.getOneImage = (req, res, next) => {
-  const { id: postId } = req.params;
+  const { post_id: postId } = req.params.id;
   const sqlGetImage = `SELECT * FROM images WHERE images.post_id = ${postId};`;
   db.query(sqlGetImage, (err, result) => {
     if (err) {

@@ -5,7 +5,7 @@ const likeCtrl = require('../controllers/like.controllers');
 const auth = require('../middleware/auth.middleware');
 
 // Les routes CRUD pour Like et  deslike
-router.patch('/:id/likeDeslike', auth, likeCtrl.likeDeslikePost);
+router.patch('/:id/likeDislike', auth, likeCtrl.likeDislikePost);
 router.post('/:id/postLikedByUser', auth, likeCtrl.postLikedByUser);
 router.post('/:id/countLike', auth, likeCtrl.countLikes);
 

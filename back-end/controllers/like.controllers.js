@@ -2,7 +2,7 @@ const dbc = require('../config/db');
 const db = dbc.getDB();
 
 // Liker & desliker le post
-exports.likeDeslikePost = (req, res) => {
+exports.likeDislikePost = (req, res) => {
   const { userId, postId } = req.body;
   const sqlSelect = `SELECT * FROM likes WHERE user_id = ${userId} AND post_id = ${postId}`;
   db.query(sqlSelect, (err, result) => {

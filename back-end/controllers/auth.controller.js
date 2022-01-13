@@ -22,7 +22,7 @@ exports.signup = async (req, res) => {
     const db = dbc.getDB();
     db.query(sql, user, (err, result) => {
       if (!result) {
-        res.status(200).json({ message: 'Email déjà enregistré' });
+        res.status(200).json({ message: 'Email déjà enregistré!!!!!!!!!!!!' });
       } else {
         res.status(201).json({ message: 'User created !' });
       }
@@ -90,7 +90,6 @@ exports.logout = (req, res) => {
   res.status(200).json('Vous êtes déconecté!!!');
 };
 
-/*
 exports.desactivateAccount = (req, res) => {
   const userId = req.params.id;
   const sql = `UPDATE users SET active=0 WHERE user_id = ?`;
@@ -103,7 +102,6 @@ exports.desactivateAccount = (req, res) => {
     res.status(200).json('DESACTIVATE');
   });
 };
-*/
 
 //supprimer
 exports.delete = (req, res) => {
