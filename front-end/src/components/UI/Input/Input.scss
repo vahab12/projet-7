@@ -1,0 +1,37 @@
+@import "../../../styles/settings.scss";
+
+.input_container {
+  width: 100%;
+  @include flex-center;
+  flex-direction: column;
+  
+  .icons_container {
+    width: 80%;
+    display: flex;
+    justify-content: flex-end;
+    svg {
+      margin: 0 5px;
+      font-size: 18px;
+      color: darken($grey, 60%)
+    }
+  }
+  input {
+    width: 80%;
+    height: 40px;
+    padding: 0 0 0 20px;
+    margin: 10px 0;
+    font-size: 1rem;
+    &:focus {
+      outline: none !important;
+      border: 1px solid $primary-color;
+      box-shadow: 0 0 3px $primary-color;
+    }
+    &::placeholder {
+      font-size: 1rem;
+    }
+  }
+}
+
+.testt {
+  width: 100%;
+}

@@ -1,0 +1,18 @@
+@import '../../styles/settings.scss';
+
+header {
+  position: relative;
+  height: 80px;
+  @include flex-center;
+  background: white;
+  width: 100%;
+  // width: 800px !important;
+  // max-width: 800px;
+  margin-bottom: 80px;
+  & a {
+    height: 100%;
+    & > img {
+      height: 100%;
+    }
+  }
+}

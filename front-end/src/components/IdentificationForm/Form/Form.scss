@@ -1,0 +1,41 @@
+@import "../../../styles/settings.scss";
+
+form {
+  @include flex-center();
+  margin-top: 20px;
+  flex-direction: column;
+  width: 100%;
+  .error {
+    color: red;
+    text-align: left;
+  }
+  .succes {
+    color: #2bb32b;
+    font-size: 18px;
+  }
+  ul {
+    list-style: none;
+  }
+  .password.infos {
+    text-align: left;
+  }
+  .login_error {
+    color: red;
+  }
+}
+
+input {
+  width: 80% !important;
+  height: 40px;
+  padding: 0 0 0 20px;
+  margin: 10px 0;
+  font-size: 1rem;
+  &:focus {
+    outline: none !important;
+    border: 1px solid $primary-color;
+    box-shadow: 0 0 3px $primary-color;
+  }
+  &::placeholder {
+    font-size: 1rem;
+  }
+}

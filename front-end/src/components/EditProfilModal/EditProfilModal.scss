@@ -1,0 +1,93 @@
+@import "../../styles/settings.scss";
+
+.modal {
+  flex-direction: column;
+  background: white;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 30%;
+  opacity: 100% !important;
+  z-index: 10;
+  pointer-events: auto !important;
+  border-radius: 5px;
+  border: solid 1px $black;
+  padding: 5px;
+  &__close {
+    &--icon {
+      font-size: 26px;
+      margin: 5px;
+      margin-bottom: 0;
+      padding: 2px;
+      color: rgb(216, 34, 34);
+      background: rgb(231, 231, 231);
+      border-radius: 5px;
+    }
+  }
+  &__infos {
+    @include flex-center;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 25px;
+    & > * {
+      @include flex-center;
+      justify-content: space-between;
+      width: 100%;
+      & > input {
+        width: 75% !important;
+      }
+      & > span {
+      }
+    }
+  }
+  &__firstname {
+    margin-top: 15px;
+  }
+  &__email {
+    margin-bottom: 20px;
+  }
+  #modal__email--input {
+    cursor: not-allowed;
+    background: darken($grey, 5%);
+  }
+  &__password {
+    display: flex;
+    flex-direction: column;
+  }
+  &__save {
+    width: 100%;
+  }
+  #modal__save {
+    width: 100% !important;
+    cursor: pointer
+  }
+  &__delete_account {
+    @include flex-center;
+    background: darken($primary-color, 5%);
+    color: $white;
+    width: 100%;
+    &:hover {
+    background: darken($primary-color, 20%);
+
+    }
+  }
+}
+
+@media (max-width: 1100px) {
+  .modal  {
+    width: 50%;
+  }
+ }
+
+ @media (max-width: 768px) {
+  .modal  {
+    width: 70%;
+  }
+ }
+
+ @media (max-width: 500px) {
+  .modal  {
+    width: 80%;
+  }
+ }

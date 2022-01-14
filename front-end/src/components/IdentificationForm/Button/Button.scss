@@ -1,0 +1,18 @@
+@import '../../../styles/settings.scss';
+
+button {
+  margin: auto;
+  padding: 10px 25px;
+  margin: 10px 0;
+  font-size: 1.5rem;
+  font-weight: 500;
+  cursor: pointer;
+  color: $pure-white;
+  background: $grey;
+  border: solid 1px darken($pure-white, 40%);
+  border-radius: 35px;
+  transition: 0.2s;
+  &:hover {
+    background: darken($grey, 5%);
+  }
+}
