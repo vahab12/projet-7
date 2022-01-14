@@ -17,13 +17,13 @@ const ToInteract = ({ postId }) => {
       postId: postId,
     };
 
-    await PATCH(ENDPOINTS.LIKE_DISLINKE, data);
+    await PATCH(ENDPOINTS.LIKE_DISLIKE, data);
     document.location.reload();
   };
 
   useEffect(() => {
     const getLikesNb = async () => {
-      const response = await POST(ENDPOINTS.LIKE_DISLINKE, { postId });
+      const response = await POST(ENDPOINTS.LIKE_DISLIKE, { postId });
 
       const nbOfLikes = response.data[0].total;
       setNbOfLikes(nbOfLikes);

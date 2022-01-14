@@ -4,8 +4,9 @@ const endpoints = {
   CREATE_POST: '/api/post',
 
   // Like & unlike post
-  LIKE_DISLINKE: '/api/post/:id/likeDislike',
-  POST_LIKED: '/api/post/:id/postLikedByUser',
+  LIKE_DISLIKE: '/api/like/:id/likeDislike',
+
+  POST_LIKED: '/api/like/:id/postLikedByUser',
 
   // Images
   GET_ONE_IMAGE: '/api/post/image/:id',
