@@ -6,15 +6,15 @@ import { faCommentAlt, faThumbsUp } from '@fortawesome/free-solid-svg-icons';
 import { POST, PATCH } from '../../../../api/axios';
 import ENDPOINTS from '../../../../api/endpoints';
 
-const ToInteract = ({ postId }) => {
+const ToInteract = ({ post_id }) => {
   // State
   const [nbOfLikes, setNbOfLikes] = useState(0);
   const [postLiked, setPostLiked] = useState(false);
 
   const likeHandle = async () => {
     const data = {
-      userId: JSON.parse(localStorage.getItem('user')).user_id,
-      postId: postId,
+      user_id: JSON.parse(localStorage.getItem('user')).user_id,
+      post_id: post_id,
     };
 
     await PATCH(ENDPOINTS.LIKE_DISLIKE, data);
@@ -23,19 +23,19 @@ const ToInteract = ({ postId }) => {
 
   useEffect(() => {
     const getLikesNb = async () => {
-      const response = await POST(ENDPOINTS.LIKE_DISLIKE, { postId });
+      const response = await POST(ENDPOINTS.COUNT_LIKES, { post_id });
 
       const nbOfLikes = response.data[0].total;
       setNbOfLikes(nbOfLikes);
     };
     getLikesNb();
-  }, [postId]);
+  }, [post_id]);
 
   useEffect(() => {
     const getColorLikeButton = async () => {
       const data = {
-        postId,
-        userId: JSON.parse(localStorage.getItem('user')).user_id,
+        post_id,
+        user_id: JSON.parse(localStorage.getItem('user')).user_id,
       };
       const response = await POST(ENDPOINTS.POST_LIKED, data);
       if (response.data[0]) {
@@ -45,7 +45,7 @@ const ToInteract = ({ postId }) => {
       }
     };
     getColorLikeButton();
-  }, [postId]);
+  }, [post_id]);
 
   return (
     <div className="to-interact">
@@ -53,7 +53,9 @@ const ToInteract = ({ postId }) => {
         <FontAwesomeIcon icon={faThumbsUp} color={'#38618c'} />
         <p className="to-interact__nb-of-likes--number">{nbOfLikes}</p>
       </div>
+
       <hr />
+
       <div className="to-interact__buttons">
         <button
           className={postLiked ? 'button__liked' : null}
@@ -67,6 +69,7 @@ const ToInteract = ({ postId }) => {
           </span>
           J'aime
         </button>
+
         <button>
           <span>
             <FontAwesomeIcon icon={faCommentAlt} color={'#ffffff'} />

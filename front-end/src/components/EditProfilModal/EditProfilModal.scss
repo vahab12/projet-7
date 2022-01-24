@@ -1,4 +1,4 @@
-@import "../../styles/settings.scss";
+@import '../../styles/settings.scss';
 
 .modal {
   flex-direction: column;
@@ -49,7 +49,7 @@
   }
   #modal__email--input {
     cursor: not-allowed;
-    background: darken($grey, 5%);
+    background: rgb(224, 224, 224);
   }
   &__password {
     display: flex;
@@ -60,34 +60,37 @@
   }
   #modal__save {
     width: 100% !important;
-    cursor: pointer
+    cursor: pointer;
+    background: $green;
+    border-radius: 20px;
+    color: $white;
+    font-weight: bold;
   }
   &__delete_account {
     @include flex-center;
-    background: darken($primary-color, 5%);
+    background: #dd8800;
     color: $white;
     width: 100%;
     &:hover {
-    background: darken($primary-color, 20%);
-
+      background: rgb(211, 0, 0);
     }
   }
 }
 
 @media (max-width: 1100px) {
-  .modal  {
+  .modal {
     width: 50%;
   }
- }
+}
 
- @media (max-width: 768px) {
-  .modal  {
+@media (max-width: 768px) {
+  .modal {
     width: 70%;
   }
- }
+}
 
- @media (max-width: 500px) {
-  .modal  {
+@media (max-width: 500px) {
+  .modal {
     width: 80%;
   }
- }
+}

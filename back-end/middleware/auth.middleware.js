@@ -19,7 +19,7 @@ module.exports = (req, res, next) => {
       });
     } else {
       res.clearCookie();
-      res.status(401).json({ message: 'UnauthorizedDDDDD' });
+      res.status(401).json({ message: 'Unauthorized' });
     }
   } catch (err) {
     res.clearCookie();

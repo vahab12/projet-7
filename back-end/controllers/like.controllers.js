@@ -1,10 +1,10 @@
 const dbc = require('../config/db');
 const db = dbc.getDB();
 
-// Liker & desliker le post
+// LIKE AND DISLIKE POSTS
 exports.likeDislikePost = (req, res) => {
-  const { userId, postId } = req.body;
-  const sqlSelect = `SELECT * FROM likes WHERE user_id = ${userId} AND post_id = ${postId}`;
+  const { user_id, post_id } = req.body;
+  const sqlSelect = `SELECT * FROM likes WHERE user_id = ${user_id} AND post_id = ${post_id}`;
   db.query(sqlSelect, (err, result) => {
     if (err) {
       console.log(err);
@@ -13,7 +13,7 @@ exports.likeDislikePost = (req, res) => {
     }
 
     if (result.length === 0) {
-      const sqlInsert = `INSERT INTO likes (user_id, post_id) VALUES (${userId}, ${postId})`;
+      const sqlInsert = `INSERT INTO likes (user_id, post_id) VALUES (${user_id}, ${post_id})`;
       db.query(sqlInsert, (err, result) => {
         if (err) {
           console.log(err);
@@ -23,7 +23,7 @@ exports.likeDislikePost = (req, res) => {
         res.status(200).json(result);
       });
     } else {
-      const sqlDelete = `DELETE FROM likes WHERE likes.user_id = ${userId} AND likes.post_id = ${postId}`;
+      const sqlDelete = `DELETE FROM likes WHERE likes.user_id = ${user_id} AND likes.post_id = ${post_id}`;
       db.query(sqlDelete, (err, result) => {
         if (err) {
           console.log(err);
@@ -36,10 +36,10 @@ exports.likeDislikePost = (req, res) => {
   });
 };
 
-//Post, liker par user
+// POST LIKED BY USER
 exports.postLikedByUser = (req, res) => {
-  const { userId, postId } = req.body;
-  const sql = `SELECT post_id, user_id FROM likes WHERE user_id = ${userId} AND post_id = ${postId}`;
+  const { user_id, post_id } = req.body;
+  const sql = `SELECT post_id, user_id FROM likes WHERE user_id = ${user_id} AND post_id = ${post_id}`;
   db.query(sql, (err, result) => {
     if (err) {
       res.status(404).json({ err });
@@ -49,10 +49,10 @@ exports.postLikedByUser = (req, res) => {
   });
 };
 
-//Counter les likes
+//COUNT LIKES
 exports.countLikes = (req, res) => {
-  const { postId } = req.body;
-  const sqlInsert = `SELECT COUNT(*) AS total FROM likes WHERE likes.post_id = ${postId}`;
+  const { post_id } = req.body;
+  const sqlInsert = `SELECT COUNT(*) AS total FROM likes WHERE likes.post_id = ${post_id}`;
   db.query(sqlInsert, (err, result) => {
     if (err) {
       res.status(404).json({ err });

@@ -2,11 +2,11 @@
   position: absolute;
   right: 15px;
   top: 15px;
-	color: #f57251;
-	transition: .3s;
+  color: #dd8800;
+  transition: 0.3s;
   &:hover {
-    color: red;
-	transition: .3s;
+    color: rgb(211, 0, 0);
+    transition: 0.3s;
     cursor: pointer;
   }
 }

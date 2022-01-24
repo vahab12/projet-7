@@ -8,6 +8,7 @@ import { GET } from '../../api/axios';
 const Posts = () => {
   const [dataApi, setDataApi] = useState([]);
   const [displayData, setDisplayData] = useState(true);
+
   useEffect(() => {
     const toFetch = async () => {
       const axiosResponse = await GET(ENDPOINTS.GET_ALL_POSTS);

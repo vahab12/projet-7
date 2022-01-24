@@ -5,8 +5,8 @@ const endpoints = {
 
   // Like & unlike post
   LIKE_DISLIKE: '/api/like/:id/likeDislike',
-
   POST_LIKED: '/api/like/:id/postLikedByUser',
+  COUNT_LIKES: '/api/like/:id/countLike',
 
   // Images
   GET_ONE_IMAGE: '/api/post/image/:id',

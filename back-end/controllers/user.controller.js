@@ -1,7 +1,7 @@
 const dbc = require('../config/db');
 const db = dbc.getDB();
 
-// Get one user
+// GET ONE USER
 exports.getOneUser = (req, res, next) => {
   const { id: userId } = req.params;
   const sqlGetUser = `SELECT * FROM users WHERE users.user_id = ${userId};`;
@@ -15,14 +15,14 @@ exports.getOneUser = (req, res, next) => {
   });
 };
 
-//Update one user
+//UDATE ONE USER
 exports.updateOneUser = (req, res, next) => {
   if (req.file) {
     const { id: user_id } = req.params;
     let { destination, filename } = req.file;
     destination = destination + filename;
 
-    const sqlInsertImage = `INSERT INTO images (post_id, user_id, img_url) VALUES (NULL, ${user_id}, "${destination}");`;
+    const sqlInsertImage = `INSERT INTO images (user_id, img_url) VALUES ( ${user_id}, "${destination}");`;
     db.query(sqlInsertImage, (err, result) => {
       if (err) {
         res.status(404).json({ err });
@@ -45,7 +45,7 @@ exports.updateOneUser = (req, res, next) => {
   });
 };
 
-// Obtenir l'image de son profile
+// GET PROFIL PICTURE
 exports.getProfilPicture = (req, res, next) => {
   const { id: user_id } = req.params;
   const sqlGetUser = `SELECT img_url FROM images WHERE images.user_id = ${user_id} ORDER BY images.img_id desc;`;

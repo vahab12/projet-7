@@ -1,12 +1,11 @@
 const dbc = require('../config/db');
 const db = dbc.getDB();
 
-// CRUD comments
-
+// CREATE COMMENT
 exports.createComment = (req, res, next) => {
-  const { message, post_id, author_id, author_first_name, author_last_name } =
+  const { post_id, author_id, author_first_name, author_last_name, message } =
     req.body;
-  const sql = `INSERT INTO comments (comment_id, post_id, author_id, author_first_name, author_last_name, message, created_date, updated_date, likes) VALUES (NULL, ${post_id}, ${author_id}, "${author_first_name}", "${author_last_name}", "${message}", CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '0')`;
+  const sql = `INSERT INTO comments ( post_id, author_id, author_first_name, author_last_name, message, created_date, updated_date, likes) VALUES ( ${post_id}, ${author_id}, "${author_first_name}", "${author_last_name}", "${message}", CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '0')`;
   db.query(sql, (err, result) => {
     if (err) {
       res.status(404).json({ err });
@@ -17,6 +16,7 @@ exports.createComment = (req, res, next) => {
   });
 };
 
+// GET ALL COMMENTS
 exports.getAllComments = (req, res) => {
   const postId = req.params.id;
   const sql = `SELECT * FROM comments WHERE comments.post_id = ${postId}`;
@@ -29,9 +29,10 @@ exports.getAllComments = (req, res) => {
   });
 };
 
+// GET ONE COMMENT
 exports.getOneComment = (req, res) => {
-  const commentId = req.params.id;
-  const sql = `SELECT * FROM comments WHERE comments.id = ${commentId}`;
+  const comment_id = req.params.id;
+  const sql = `SELECT * FROM comments WHERE comments.comment_id= ${comment_id}`;
   db.query(sql, (err, result) => {
     if (err) {
       res.status(404).json({ err });
@@ -41,9 +42,10 @@ exports.getOneComment = (req, res) => {
   });
 };
 
+// DELETE ONE COMMENTS
 exports.deleteOneComment = (req, res) => {
   const comment_id = req.params.id;
-  const sql = `DELETE FROM comments WHERE comments.id = ${comment_id}`;
+  const sql = `DELETE FROM comments WHERE comments.comment_id = ${comment_id}`;
   db.query(sql, (err, result) => {
     if (err) {
       res.status(404).json({ err });
@@ -52,15 +54,3 @@ exports.deleteOneComment = (req, res) => {
     res.status(200).json(result);
   });
 };
-
-// exports.getProfilPicture = (req, res) => {
-//   const { id: user_id } = req.params;
-//   const sqlGetUser = `SELECT image_url FROM images WHERE images.user_id = ${user_id} ORDER BY images.image_id desc;`;
-//   db.query(sqlGetUser, (err, result) => {
-//     if (err) {
-//       res.status(404).json({ err });
-//       throw err;
-//     }
-//     res.status(200).json(result);
-//   });
-// };

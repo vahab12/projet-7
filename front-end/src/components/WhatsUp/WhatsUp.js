@@ -40,7 +40,7 @@ const WhatsUp = () => {
       <Avatar className={'whatsup__avatar'} imgSrc={imgSrc} />
       <WhatsUpForm
         className={'whatsup__form'}
-        placeholder={`Quoi de neuf, ${userName} ?`}
+        placeholder={`Publier votre post, ${userName} ?`}
       />
     </div>
   );

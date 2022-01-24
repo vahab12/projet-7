@@ -17,13 +17,13 @@ const path = require('path');
 require('dotenv').config(path, './config/.env');
 
 //mysql
-const mysql = require('mysql');
+//const mysql = require('mysql');
 
 //db
-const db = require('./config/db');
+//const db = require('./config/db');
 
 //multer
-const multer = require('./middleware/multer-config');
+//const multer = require('./middleware/multer-config');
 
 const app = express();
 

@@ -4,7 +4,7 @@ import './ToRespond.scss';
 
 import axios from 'axios';
 
-const ToRespond = ({ postId }) => {
+const ToRespond = ({ post_id }) => {
   // States
   const [commentMessage, setCommentMessage] = useState('');
 
@@ -16,7 +16,7 @@ const ToRespond = ({ postId }) => {
       author_first_name: JSON.parse(localStorage.getItem('user'))
         .user_first_name,
       author_last_name: JSON.parse(localStorage.getItem('user')).user_last_name,
-      post_id: postId,
+      post_id: post_id,
       message: commentMessage,
     };
     await axios.post(`http://localhost:5014/api/comment/${data.post_id}`, data);

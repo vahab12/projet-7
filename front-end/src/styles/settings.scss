@@ -7,9 +7,10 @@ $primary-color: #086677;
 $secondary-color: #38618c;
 $tertiary-color: #a13d63;
 $pure-white: #ffffff;
-$white: #f5f5f5;
-$grey: rgb(0, 128, 6);
+$white: #ffffff;
+$green: rgb(0, 128, 6);
 $black: #12100e;
+$border: #9b9494;
 
 @mixin flex-center {
   display: flex;

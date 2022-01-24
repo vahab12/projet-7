@@ -8,11 +8,11 @@ button {
   font-weight: 500;
   cursor: pointer;
   color: $pure-white;
-  background: $grey;
+  background: $green;
   border: solid 1px darken($pure-white, 40%);
   border-radius: 35px;
   transition: 0.2s;
   &:hover {
-    background: darken($grey, 5%);
+    background: darken($green, 5%);
   }
 }

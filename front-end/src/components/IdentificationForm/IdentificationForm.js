@@ -52,15 +52,17 @@ const IdentificationForm = () => {
         <>
           <Form form="register" />
           <div className="links">
-            <Link content="Vous avez déjà un compte ?" onClick={displayLogin} />
+            <Link
+              content="Vous avez un compte ? connectez vous !"
+              onClick={displayLogin}
+            />
           </div>
         </>
       ) : (
         <>
           <Form form="login" />
           <div className="links">
-            <Link content="Mot de passe oublié ?" onClick={displayRegister} />
-            <Link content="Pas encore de compte ?" onClick={displayRegister} />
+            <Link content="créer un compte" onClick={displayRegister} />
           </div>
         </>
       )}

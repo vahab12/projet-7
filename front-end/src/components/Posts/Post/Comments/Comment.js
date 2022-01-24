@@ -14,7 +14,7 @@ dayjs.extend(relativeTime);
 const Comment = ({ comment }) => {
   // // Render Trash component if user is Admin or if user is author of the comment
 
-  const { id: comment_id } = comment;
+  const { comment_id } = comment;
   const [trash, setTrash] = useState(false);
   const [imgSrc, setImgSrc] = useState('');
 
@@ -80,10 +80,13 @@ const Comment = ({ comment }) => {
           {`${comment.author_first_name} ${comment.author_last_name}`}
         </div>
       </div>
+
       {trash && <Trash comment={comment} onClick={handleClick} />}
+
       <div className="comment__message">{comment.message}</div>
+
       <div className="comment__date">
-        {dayjs(comment.created_at).locale('fr').fromNow()}
+        {dayjs(comment.created_date).locale('fr').fromNow()}
       </div>
     </div>
   );

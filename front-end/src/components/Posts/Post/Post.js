@@ -26,7 +26,7 @@ const Post = ({ post }) => {
 
   const [imgSrc, setImgSrc] = useState('');
 
-  const id = post.id;
+  const id = post.post_id;
   useEffect(() => {
     const toFetch = async () => {
       try {
@@ -34,7 +34,7 @@ const Post = ({ post }) => {
           `http://localhost:5014/api/post/image/${id}`
         );
         if (response.data.length > 0) {
-          setMediaURL(response.data[0].img_url);
+          setMediaURL(response.data[0].post_img_url);
         }
       } catch (err) {
         throw err;
@@ -48,8 +48,8 @@ const Post = ({ post }) => {
     author_last_name,
     post_date,
     message,
-    id: postId,
-    //post_ser_id: user_id,
+    post_id,
+    user_id,
   } = post;
 
   // Render Trash component if user is Admin or if user is author of the post
@@ -60,13 +60,15 @@ const Post = ({ post }) => {
     const toFetchTrash = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:5014/api/post/${id}`
+          `http://localhost:5014/api/post/${post_id}`
         );
+
         let isAdmin = await axios.get(
           `http://localhost:5014/api/user/${
             JSON.parse(localStorage.getItem('user')).user_id
           }`
         );
+
         isAdmin = isAdmin.data[0].admin;
         if (
           response.data[0].user_id ===
@@ -80,13 +82,13 @@ const Post = ({ post }) => {
       }
     };
     toFetchTrash();
-  }, [id]);
+  }, [post_id]);
 
   const handleClick = () => {
     const deletePost = async () => {
       try {
         const response = await axios.delete(
-          `http://localhost:5014/api/post/${id}`
+          `http://localhost:5014/api/post/${post_id}`
         );
         if (response.status === 200) document.location.reload();
       } catch (err) {
@@ -99,7 +101,7 @@ const Post = ({ post }) => {
   const toFetchAvatarOfPoster = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:5014/api/user/image/${post.user_id}`
+        `http://localhost:5014/api/user/image/${user_id}`
       );
       if (response.data[0]) setImgSrc(response.data[0].img_url);
       else setImgSrc('./images/profils/default/mee.png');
@@ -125,12 +127,18 @@ const Post = ({ post }) => {
             />
           </div>
         </div>
+
         {trash && <Trash post={post} onClick={handleClick} />}
+
         <Text message={message} />
+
         {mediaURL && <Media mediaURL={mediaURL} />}
-        <ToInteract postId={postId} />
-        <Comments postId={postId} />
-        <ToRespond postId={postId} />
+
+        <ToInteract post_id={post_id} />
+
+        <Comments post_id={post_id} />
+
+        <ToRespond post_id={post_id} />
       </div>
     </>
   );

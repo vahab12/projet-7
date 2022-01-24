@@ -41,11 +41,12 @@ const EditProfilModal = () => {
 
   const history = useHistory();
 
-  const desactivateAccount = () => {
-    if (!window.confirm(`Voulez-vous vraiment désactiver le compte ?`)) return;
+  const deleteAcount = () => {
+    if (!window.confirm(`Voulez-vous vraiment supprimer votre compte ?`))
+      return;
 
-    const userId = JSON.parse(localStorage.getItem('user')).user_id;
-    axios.get(`http://localhost:5014/api/auth/desactivateAccount/${userId}`);
+    const user_id = JSON.parse(localStorage.getItem('user')).user_id;
+    axios.delete(`http://localhost:5014/api/auth/delete/${user_id}`);
     localStorage.clear();
     const toRedirect = (link) => {
       history.push(link);
@@ -160,8 +161,8 @@ const EditProfilModal = () => {
             value="Enregistrer"
           />
         </div>
-        <button className="modal__delete_account" onClick={desactivateAccount}>
-          Désactiver le compte
+        <button className="modal__delete_account" onClick={deleteAcount}>
+          Supprimer le compte
         </button>
       </form>
     </div>

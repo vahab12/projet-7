@@ -2,16 +2,14 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 require('dotenv').config({ path: '../config/.env' });
 const dbc = require('../config/db');
-//const mysql = require('mysql');
 
-// Créer un compte
+// SIGNUP
 exports.signup = async (req, res) => {
-  console.log(req.body);
   try {
     const { user_password: password } = req.body;
 
     // ====== Password encryption =========
-    const salt = await bcrypt.genSalt(10);
+    const salt = await bcrypt.genSalt(8);
     const encryptedPassword = await bcrypt.hash(password, salt);
 
     const user = {
@@ -22,9 +20,9 @@ exports.signup = async (req, res) => {
     const db = dbc.getDB();
     db.query(sql, user, (err, result) => {
       if (!result) {
-        res.status(200).json({ message: 'Email déjà enregistré!!!!!!!!!!!!' });
+        res.status(200).json({ message: 'Email déjà enregistré ' });
       } else {
-        res.status(201).json({ message: 'User created !' });
+        res.status(201).json({ message: 'User created  !' });
       }
     });
   } catch (err) {
@@ -32,7 +30,7 @@ exports.signup = async (req, res) => {
   }
 };
 
-//S'identifié
+//LOGIN
 exports.login = (req, res) => {
   //===== Vérifier si user exist dans BD ======
   const { user_email, user_password: clearPassword } = req.body;
@@ -78,37 +76,24 @@ exports.login = (req, res) => {
     } else if (!results[0]) {
       res.status(200).json({
         error: true,
-        message: 'Mauvaise combinaison email / mot de passe',
+        message: "Email, MDP incorrect ou pas d'compte",
       });
     }
   });
 };
 
-//se deconnecter
+//LOGOUT
 exports.logout = (req, res) => {
   res.clearCookie('jwt');
   res.status(200).json('Vous êtes déconecté!!!');
 };
 
-exports.desactivateAccount = (req, res) => {
-  const userId = req.params.id;
-  const sql = `UPDATE users SET active=0 WHERE user_id = ?`;
-  const db = dbc.getDB();
-  db.query(sql, userId, (err, results) => {
-    if (err) {
-      return res.status(404).json({ err });
-    }
-    res.clearCookie('jwt');
-    res.status(200).json('DESACTIVATE');
-  });
-};
-
-//supprimer
+//DELETE
 exports.delete = (req, res) => {
-  const userId = req.params.id;
+  const user_id = req.params.id;
   const db = dbc.getDB();
-  const sql = 'DELETE  FROM users WHERE user_id = ?';
-  db.query(sql, [userId], (err, rows, fields) => {
+  const sql = `DELETE  FROM users WHERE user_id = ${user_id}`;
+  db.query(sql, [user_id], (err, rows, fields) => {
     if (!err) res.send('Deleted successfully.');
     else console.log(err);
   });

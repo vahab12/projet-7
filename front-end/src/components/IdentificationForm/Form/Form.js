@@ -47,8 +47,9 @@ const Form = ({ form }) => {
 
   const { user_first_name, user_last_name } = userSignup;
 
-  // Verify input data
+  //VERIFIER L'IMPUT DATA
 
+  //CHECK FIRST NAME
   const checkFirstName = () => {
     if (user_first_name.trim() === '') {
       refSignupFirstNameError.current.innerText = '';
@@ -64,6 +65,7 @@ const Form = ({ form }) => {
     }
   };
 
+  //CHECK LAST NAME
   const checkLastName = () => {
     if (user_last_name.trim() === '') {
       refSignupLastNameError.current.innerText = '';
@@ -79,6 +81,7 @@ const Form = ({ form }) => {
     }
   };
 
+  //CHECK EMAIL
   const checkEmail = (email) => {
     if (email.trim() === '') {
       refSignupEmailError.current.innerText = '';
@@ -93,6 +96,7 @@ const Form = ({ form }) => {
     }
   };
 
+  //CHECK PASSWORD
   const checkPassword = (password) => {
     setPasswordFocus(true);
     var flags = {
@@ -134,7 +138,7 @@ const Form = ({ form }) => {
     }
   };
 
-  // Signup / login functions
+  //SIGNUP
   const signup = async (e) => {
     try {
       e.preventDefault();
@@ -153,7 +157,8 @@ const Form = ({ form }) => {
       ) {
         const response = await POST(ENDPOINTS.USER_SIGNUP, userSignup);
         if (response.status === 200) {
-          refSignupEmailError.current.innerText = 'Email déjà enregistré';
+          refSignupEmailError.current.innerText =
+            'Email existe déjà dans le BD ';
         }
         if (response.status === 201) {
           setAccountCreated(true);
@@ -164,6 +169,7 @@ const Form = ({ form }) => {
     }
   };
 
+  //LOGIN
   const history = useHistory();
   const login = async (e) => {
     try {
@@ -185,6 +191,7 @@ const Form = ({ form }) => {
     }
   };
 
+  //RETURN
   return (
     <>
       {form === 'register' ? (
@@ -309,7 +316,7 @@ const Form = ({ form }) => {
 
           <Button name="Inscription" />
           <div className="account-created succes">
-            {accountCreated && 'Vous pouvez maintenant vous connecter !'}
+            {accountCreated && 'Votre compte a été crée avec succè !'}
           </div>
         </form>
       ) : (

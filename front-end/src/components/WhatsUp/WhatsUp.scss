@@ -1,10 +1,10 @@
-@import "../../styles/settings.scss";
+@import '../../styles/settings.scss';
 
 .whats_up {
-    @include flex-center();
-    background: $pure-white;
-    border-radius: 5px;
-    padding: 10px;
-    border: solid 1px $black;
-    width: 100%;
+  @include flex-center();
+  background: $pure-white;
+  border-radius: 10px;
+  padding: 10px;
+  border: solid 2px $border;
+  width: 100%;
 }

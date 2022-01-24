@@ -6,10 +6,12 @@
   display: flex;
   justify-content: flex-start;
   flex-direction: column;
-  border: solid 1px $black;
-  border-radius: 5px;
+  border: solid 2px $border;
+
+  border-radius: 10px;
   width: 100%;
-  padding: 5px;
+  height: 100%;
+  padding: 3px;
   margin: 0 0 10px 0;
 
   &__author_group {
@@ -17,7 +19,7 @@
     justify-content: flex-start;
     align-items: center;
     .post__author_and_date {
-      display: flex;
+      //display: flex;
       justify-content: start;
       flex-direction: column;
     }

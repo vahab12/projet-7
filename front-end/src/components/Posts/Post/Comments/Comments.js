@@ -4,13 +4,13 @@ import './Comments.scss';
 import axios from 'axios';
 import Comment from './Comment';
 
-const Comments = ({ postId }) => {
+const Comments = ({ post_id }) => {
   // States
   const [allComments, setAllComments] = useState([]);
   useEffect(() => {
     async function fetchData() {
       const response = await axios.get(
-        `http://localhost:5014/api/comment/${postId}/allcomments`
+        `http://localhost:5014/api/comment/${post_id}/allcomments`
       );
       const data = response.data;
       if (Array.isArray(data)) {
@@ -18,12 +18,12 @@ const Comments = ({ postId }) => {
       } else throw new Error("Oops, didn't get an array.");
     }
     fetchData();
-  }, [postId]);
+  }, [post_id]);
 
   return (
     <div className="comments">
       {allComments.map((comment) => (
-        <Comment comment={comment} key={comment.id} />
+        <Comment comment={comment} key={comment.post_id} />
       ))}
     </div>
   );

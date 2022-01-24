@@ -1,10 +1,10 @@
-@import "../../../styles/settings.scss";
+@import '../../../styles/settings.scss';
 
 .input_container {
   width: 100%;
   @include flex-center;
   flex-direction: column;
-  
+
   .icons_container {
     width: 80%;
     display: flex;
@@ -12,7 +12,7 @@
     svg {
       margin: 0 5px;
       font-size: 18px;
-      color: darken($grey, 60%)
+      color: darken($green, 60%);
     }
   }
   input {
