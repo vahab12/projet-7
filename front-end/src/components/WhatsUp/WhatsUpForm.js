@@ -57,17 +57,19 @@ const WhatsUpForm = ({ className, id, name, placeholder }) => {
       action="/api/post"
       encType="multipart/form-data"
     >
-      <label for={id}>publier votre post</label>
-      <input
-        className="testt"
-        type="text"
-        id={id}
-        name={name}
-        placeholder={placeholder}
-        required
-        value={inputValue}
-        onChange={inputHandler}
-      />
+      <label for={id}>
+        Publier votre post:
+        <input
+          className="testt"
+          type="text"
+          id={id}
+          name={name}
+          placeholder={placeholder}
+          required
+          value={inputValue}
+          onChange={inputHandler}
+        />
+      </label>
       <div className="icons_container">
         <input
           type="file"
