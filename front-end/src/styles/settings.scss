@@ -9,7 +9,7 @@ $tertiary-color: #a13d63;
 $pure-white: #ffffff;
 $white: #ffffff;
 $green: rgb(0, 128, 6);
-$black: #12100e;
+$black: #000000;
 $border: #9b9494;
 
 @mixin flex-center {
@@ -29,6 +29,7 @@ $border: #9b9494;
   font-family: 'Ubuntu';
   margin: 0;
   padding: 0;
+
   box-sizing: border-box;
 }
 

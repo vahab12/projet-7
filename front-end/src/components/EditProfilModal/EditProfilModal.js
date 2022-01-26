@@ -6,7 +6,7 @@ import './EditProfilModal.scss';
 import axios from 'axios';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTimes, faImage } from '@fortawesome/free-solid-svg-icons';
+import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
 
 const EditProfilModal = () => {
@@ -128,23 +128,18 @@ const EditProfilModal = () => {
         <div className="modal__photo">
           <img src={`http://localhost:5014/${imgSrc}`} alt="profile_picture" />
           <input type="file" name="profil_image" id="profil_image" />
-          <label htmlFor="profil_image">
-            <FontAwesomeIcon
-              icon={faImage}
-              className="profile_picture__change"
-            />
-          </label>
+          <label for="profil_image">Upload image</label>
         </div>
         <div className="modal__firstname">
-          <span>Prénom : </span>
-          <input ref={refFirstname} type="text" name="" id="" />
+          <label for="firstname">Prénom:</label>
+          <input ref={refFirstname} type="text" name="" id="firstname" />
         </div>
         <div className="modal__lastname">
-          <span>Nom : </span>
-          <input ref={refLastname} type="text" name="" id="" />
+          <label for="lastname">Nom:</label>
+          <input ref={refLastname} type="text" name="" id="lastname" />
         </div>
         <div className="modal__email">
-          <span>Email : </span>
+          <label for="modal__email--input">Email:</label>
           <input
             type="email"
             name=""

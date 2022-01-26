@@ -198,6 +198,7 @@ const Form = ({ form }) => {
         <form className="form" onSubmit={signup}>
           {
             <>
+              <label for="firstname">Prénom:</label>
               <input
                 type="text"
                 className="input_container"
@@ -218,6 +219,7 @@ const Form = ({ form }) => {
                 className="firstname error"
                 ref={refSignupFirstNameError}
               ></div>
+              <label for="lastname">Nom:</label>
               <input
                 type="text"
                 className="input_container"
@@ -237,6 +239,7 @@ const Form = ({ form }) => {
                 className="lastname error"
                 ref={refSignupLastNameError}
               ></div>
+              <label for="email">Mail:</label>
               <input
                 type="email"
                 className="input_container"
@@ -251,7 +254,7 @@ const Form = ({ form }) => {
                 ref={refSignupEmail}
               />
               <div className="email error" ref={refSignupEmailError}></div>
-
+              <label for="password">Password:</label>
               <input
                 type="password"
                 className="input_container"
@@ -296,11 +299,12 @@ const Form = ({ form }) => {
                   </div>
                 </ul>
               ) : null}
+              <label for="password1">Password:</label>
               <input
                 type="password"
                 className="input_container"
                 placeholder="Confirmer le mot de passe"
-                id="password"
+                id="password1"
                 name="password"
                 ref={refSignupPasswordConfirmation}
                 onChange={() => {
@@ -321,6 +325,7 @@ const Form = ({ form }) => {
         </form>
       ) : (
         <form className="form" onSubmit={login}>
+          <label for="login-email">Mail</label>
           <input
             type="email"
             className="input_container"
@@ -335,6 +340,7 @@ const Form = ({ form }) => {
             }
             value={userLogin.user_email}
           />
+          <label for="login-password">Password</label>
           <input
             type="password"
             className="input_container"

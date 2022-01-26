@@ -5,15 +5,15 @@ import './WhatsUpForm.scss';
 import ENDPOINTS from '../../api/endpoints';
 import { POST } from '../../api/axios';
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faImages, faPaperPlane } from '@fortawesome/free-solid-svg-icons';
+//import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+//import { faImages, faPaperPlane } from '@fortawesome/free-solid-svg-icons';
 
 import dayjs from 'dayjs';
 
 const WhatsUpForm = ({ className, id, name, placeholder }) => {
   const [inputValue, setInputValue] = useState('');
 
-  const [imageAdded, setImageAdded] = useState(false);
+  //const [imageAdded, setImageAdded] = useState(false);
   const [imageName, setImageName] = useState('');
 
   const inputHandler = (e) => {
@@ -46,7 +46,7 @@ const WhatsUpForm = ({ className, id, name, placeholder }) => {
 
   const imageAddedToPost = (e) => {
     setImageName(e.target.value.slice(12));
-    setImageAdded(true);
+    //setImageAdded(true);
   };
 
   return (
@@ -57,6 +57,7 @@ const WhatsUpForm = ({ className, id, name, placeholder }) => {
       action="/api/post"
       encType="multipart/form-data"
     >
+      <label for={id}>publier votre post</label>
       <input
         className="testt"
         type="text"
@@ -76,14 +77,9 @@ const WhatsUpForm = ({ className, id, name, placeholder }) => {
           onInput={imageAddedToPost}
         />
         <div className="image_name">{imageName}</div>
-        <label htmlFor="post_image">
-          <FontAwesomeIcon
-            icon={faImages}
-            color={imageAdded ? '#f57251' : null}
-          />
-        </label>
+        <label htmlFor="post_image">Upload image</label>
         <button type="submit" className="icons_container__submit">
-          <FontAwesomeIcon icon={faPaperPlane} />
+          Publier
         </button>
       </div>
     </form>

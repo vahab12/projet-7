@@ -25,6 +25,15 @@
       border-radius: 5px;
     }
   }
+  .modal__photo label {
+    background: $green;
+    color: $white;
+    width: 70px;
+    height: 50px;
+    font-weight: bold;
+    border-radius: 10px;
+    padding-left: 10px;
+  }
   &__infos {
     @include flex-center;
     flex-direction: column;
@@ -68,11 +77,11 @@
   }
   &__delete_account {
     @include flex-center;
-    background: #dd8800;
+    background: #8f5800;
     color: $white;
     width: 100%;
     &:hover {
-      background: rgb(211, 0, 0);
+      background: rgb(112, 0, 0);
     }
   }
 }

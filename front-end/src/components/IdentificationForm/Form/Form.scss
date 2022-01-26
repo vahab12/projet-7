@@ -1,4 +1,4 @@
-@import "../../../styles/settings.scss";
+@import '../../../styles/settings.scss';
 
 form {
   @include flex-center();
@@ -22,10 +22,14 @@ form {
   .login_error {
     color: red;
   }
+  label {
+    font-weight: bold;
+  }
 }
 
 input {
-  width: 80% !important;
+  width: 80%;
+  color: black;
   height: 40px;
   padding: 0 0 0 20px;
   margin: 10px 0;
@@ -38,4 +42,7 @@ input {
   &::placeholder {
     font-size: 1rem;
   }
+}
+label {
+  padding: 5px 50px 0 0;
 }

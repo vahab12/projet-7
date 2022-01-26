@@ -33,12 +33,13 @@ const ToRespond = ({ post_id }) => {
     <>
       <hr className="divider" />
       <form onSubmit={submitHandle} id={'form-comment'}>
+        <label for="comment">Écrivez un commentaire</label>
         <input
           type="text"
           placeholder="Écrivez un commentaire..."
           onChange={inputHandle}
           value={commentMessage}
-          id="input-comment"
+          id="comment"
         />
       </form>
     </>
